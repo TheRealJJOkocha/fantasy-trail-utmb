@@ -166,8 +166,10 @@
 
   <section>
     <h2 class="section-title">2. Valider ton équipe</h2>
-    <p class="section-help">Une fois ton équipe choisie ci-dessus (dans la limite du budget), note les coureurs et remplis le formulaire — c'est lui qui enregistre officiellement ton équipe.</p>
-    <a id="form-link" href="#" target="_blank" style="display:inline-block;"><button class="primary">Ouvrir le formulaire ↗</button></a>
+    <p class="section-help">Entre ton prénom, puis ouvre le formulaire — tes coureurs sélectionnés ci-dessus seront déjà cochés dedans, il ne te reste qu'à confirmer l'envoi.</p>
+    <input type="text" id="participant-name" placeholder="Ton prénom">
+    <a id="form-link" href="#" target="_blank" style="display:inline-block;"><button class="primary">Ouvrir le formulaire (pré-rempli) ↗</button></a>
+    <div class="msg" id="form-msg"></div>
   </section>
 
   <section>
@@ -195,6 +197,11 @@ const RACE = {
   valuePoolMultiplier: 5,
   storageKey: "utmb2026",
   formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSf7zEnmmErUxZrAx9qhsBQDABPPTsY26a8hguZHy2GAOYFx2w/viewform?usp=publish-editor",
+  formEntryIds: {
+    name: "1402695677",
+    men: "1338927932",
+    women: "1518621773"
+  },
   teamsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQc8dt-_gLdukXORalmsE8FMdqHKZD4ebUvm_PXseVT6WWzvssslmAG37nh3J_VE4OzmJP5dWGZXgrQ/pub?gid=1582131261&single=true&output=csv",
   resultsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQc8dt-_gLdukXORalmsE8FMdqHKZD4ebUvm_PXseVT6WWzvssslmAG37nh3J_VE4OzmJP5dWGZXgrQ/pub?gid=594371071&single=true&output=csv",
   runners: [
@@ -351,6 +358,7 @@ function renderRunners(){
       else selected.add(r.id);
       renderRunners();
       updateBudget();
+      updateFormLink();
     };
     el.appendChild(card);
   });
@@ -375,6 +383,35 @@ renderRunners();
 updateBudget();
 
 document.getElementById('form-link').href = RACE.formUrl || '#';
+
+function optionTextFor(runner){
+  return runner.name + ' (' + runner.value + ')';
+}
+
+function buildPrefilledFormUrl(){
+  if (!RACE.formUrl || !RACE.formEntryIds) return RACE.formUrl || '#';
+  const base = RACE.formUrl.split('?')[0];
+  const params = [];
+  params.push('usp=pp_url');
+
+  const name = document.getElementById('participant-name').value.trim();
+  if (name) params.push('entry.' + RACE.formEntryIds.name + '=' + encodeURIComponent(name));
+
+  runnersWithValue.forEach(r => {
+    if (!selected.has(r.id)) return;
+    const isWoman = r.id.endsWith('w');
+    const entryId = isWoman ? RACE.formEntryIds.women : RACE.formEntryIds.men;
+    params.push('entry.' + entryId + '=' + encodeURIComponent(optionTextFor(r)));
+  });
+
+  return base + '?' + params.join('&');
+}
+
+function updateFormLink(){
+  document.getElementById('form-link').href = buildPrefilledFormUrl();
+}
+
+document.getElementById('participant-name').addEventListener('input', updateFormLink);
 
 function parseCsv(text){
   const lines = text.trim().split('\n').map(l => l.trim()).filter(Boolean);
