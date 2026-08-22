@@ -196,6 +196,7 @@ const RACE = {
   budget: 1000,
   valuePoolMultiplier: 5,
   storageKey: "utmb2026",
+  deadline: "2026-08-28T17:45:00+02:00",
   formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSf7zEnmmErUxZrAx9qhsBQDABPPTsY26a8hguZHy2GAOYFx2w/viewform?usp=publish-editor",
   formEntryIds: {
     name: "1402695677",
@@ -527,13 +528,18 @@ async function loadLeaderboard(){
       return { name: findParticipantName(row), score, runnerIds, spent };
     });
 
+    const raceStarted = Date.now() >= new Date(RACE.deadline).getTime();
+
     const validTeams = teams.filter(t => t.spent <= RACE.budget);
     const invalidTeams = teams.filter(t => t.spent > RACE.budget);
 
     validTeams.sort((a, b) => b.score - a.score);
 
     boardEl.className = '';
-    if (validTeams.length === 0){
+    if (!raceStarted){
+      boardEl.innerHTML = '<p class="section-help" style="margin:0 0 1rem;">🔒 Les équipes restent secrètes jusqu\'au départ de la course (vendredi 28 août, 17h45). Seuls les prénoms sont visibles pour l\'instant.</p>' +
+        validTeams.map(t => '<div class="board-row"><div class="board-name" style="flex:1;">' + t.name + '</div></div>').join('');
+    } else if (validTeams.length === 0){
       boardEl.innerHTML = '<p class="section-help" style="margin:0;">Aucune équipe valide pour le moment.</p>';
     } else {
       boardEl.innerHTML = validTeams.map((t, i) => {
