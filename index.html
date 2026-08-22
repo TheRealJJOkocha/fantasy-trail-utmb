@@ -471,10 +471,19 @@ async function loadLeaderboard(){
     const teamRows = parseCsv(teamsRes);
     const resultRows = parseCsv(resultsRes);
 
+    function findColumnKey(row, needle){
+      const normKey = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return Object.keys(row).find(k => normKey(k).includes(needle));
+    }
+
     const resultsByRunner = {};
     resultRows.forEach(row => {
-      const runner = findRunnerByName(row['Coureur'] || '');
-      if (runner) resultsByRunner[runner.id] = row['Résultat'] || row['Resultat'] || '';
+      const coureurKey = findColumnKey(row, 'coureur') || findColumnKey(row, 'nom') || findColumnKey(row, 'runner');
+      const resultatKey = findColumnKey(row, 'resultat') || findColumnKey(row, 'place') || findColumnKey(row, 'classement') || findColumnKey(row, 'rank');
+      const coureurVal = coureurKey ? row[coureurKey] : '';
+      const resultatVal = resultatKey ? row[resultatKey] : '';
+      const runner = findRunnerByName(coureurVal || '');
+      if (runner && resultatVal) resultsByRunner[runner.id] = resultatVal;
     });
 
     if (teamRows.length === 0){
