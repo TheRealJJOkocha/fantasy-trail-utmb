@@ -497,17 +497,23 @@ async function loadLeaderboard(){
     function findParticipantName(row){
       const normKey = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       const keys = Object.keys(row);
-      const nameKey = keys.find(k => normKey(k).includes('prenom'));
+      const nameKey = keys.find(k => normKey(k).includes('prenom') || normKey(k).includes('pseudo'));
       if (nameKey && row[nameKey]) return row[nameKey];
       const firstKey = keys.find(k => k.toLowerCase() !== 'horodateur' && k.toLowerCase() !== 'timestamp');
       return (firstKey && row[firstKey]) ? row[firstKey] : 'Anonyme';
     }
 
+    function findTeamColumnKey(row, needle){
+      const normKey = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return Object.keys(row).find(k => normKey(k).includes(needle));
+    }
+
     const teams = teamRows.map(row => {
-      const rawMen = row['Choisis tes coureurs (hommes)'] || '';
-      const rawWomen = row['Choisis tes coureurs (femmes)'] || '';
-      const rawSingle = row['Choisis tes coureurs'] || row['Coureurs'] || '';
-      const raw = [rawMen, rawWomen, rawSingle].filter(Boolean).join(',');
+      const menKey = findTeamColumnKey(row, 'coureur') || findTeamColumnKey(row, 'homme');
+      const womenKey = findTeamColumnKey(row, 'coureuse') || findTeamColumnKey(row, 'femme');
+      const rawMen = menKey ? row[menKey] : '';
+      const rawWomen = womenKey ? row[womenKey] : '';
+      const raw = [rawMen, rawWomen].filter(Boolean).join(',');
       const names = raw.split(',').map(s => s.trim()).filter(Boolean);
       const runnerIds = names.map(n => {
         const runner = findRunnerByName(n);
