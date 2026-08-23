@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fantasy Trail</title>
+<title>Fantasy Trail ®</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -150,10 +150,10 @@
   <section>
     <h2 class="section-title">Règles du jeu</h2>
     <p class="section-help" style="margin-bottom: 0.8rem;">
-      Compose une équipe de coureurs dans la limite du budget. À la fin de la course, chaque coureur de ton équipe te rapporte des Cailloux 🪨 selon sa place finale — <strong>dans sa propre catégorie</strong> (homme ou femme), pas au classement scratch mélangé. Ton score total est la somme des Cailloux de toute ton équipe.
+      Compose une équipe de coureurs dans la limite du budget. À la fin de la course, chaque coureur de ton équipe te rapporte des Cailloux ⛰️ selon sa place finale — <strong>dans sa propre catégorie</strong> (homme ou femme), pas au classement scratch mélangé. Ton score total est la somme des Cailloux de toute ton équipe.
     </p>
     <table style="margin-bottom: 0.8rem;">
-      <tr><th>Place (dans sa catégorie)</th><th>Cailloux 🪨</th></tr>
+      <tr><th>Place (dans sa catégorie)</th><th>Cailloux ⛰️</th></tr>
       <tr><td>1er / 1ère</td><td>2 000</td></tr>
       <tr><td>2e</td><td>1 200</td></tr>
       <tr><td>3e</td><td>800</td></tr>
@@ -194,7 +194,7 @@
 
   <section>
     <h2 class="section-title">2. Valider ton équipe</h2>
-    <p class="section-help">Entre ton pseudo, puis ouvre le formulaire — tes coureurs sélectionnés ci-dessus seront déjà cochés dedans, il ne te reste qu'à confirmer l'envoi.</p>
+    <p class="section-help">Entre ton prénom, puis ouvre le formulaire — tes coureurs sélectionnés ci-dessus seront déjà cochés dedans, il ne te reste qu'à confirmer l'envoi.</p>
     <input type="text" id="participant-name" placeholder="Ton prénom">
     <a id="form-link" href="#" target="_blank" style="display:inline-block;"><button class="primary">Ouvrir le formulaire (pré-rempli) ↗</button></a>
     <div class="msg" id="form-msg"></div>
@@ -627,7 +627,7 @@ async function loadLeaderboard(){
         return '<div class="board-row">' +
           '<div class="board-rank' + (i === 0 ? ' gold' : '') + '">' + (i + 1) + '</div>' +
           '<div><div class="board-name">' + t.name + '</div><div class="board-team">' + teamLine + '</div></div>' +
-          '<div class="board-score">' + t[scoreKey].toLocaleString('fr-FR') + ' 🪨</div>' +
+          '<div class="board-score">' + t[scoreKey].toLocaleString('fr-FR') + ' ⛰️</div>' +
         '</div>';
       }).join('');
     }
