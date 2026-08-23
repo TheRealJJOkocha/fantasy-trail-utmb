@@ -167,7 +167,7 @@
 
   <section>
     <h2 class="section-title">1. Constituer ton équipe</h2>
-    <p class="section-help">La valeur de chaque coureur est calculée depuis sa cote de victoire (favoris = plus cher). Pas de nombre imposé de coureurs — seul le budget total compte.</p>
+    <p class="section-help">La valeur de chaque coureur est calculée depuis son niveau/index UTMB (favoris = plus cher). Pas de nombre imposé de coureurs — seul le budget total compte.</p>
 
     <div class="budget-bar">
       <div class="budget-track"><div class="budget-fill" id="budget-fill" style="width:0%"></div></div>
@@ -361,7 +361,7 @@ function renderRunners(){
     card.innerHTML =
       '<div class="runner-top"><span class="runner-name">' + genderSymbol + ' ' + r.name + '</span>' +
       '<span class="runner-value">' + r.value + '</span></div>' +
-      '<div class="runner-meta">cote ' + r.odd + '</div>';
+      '<div class="runner-meta"></div>';
     card.onclick = () => {
       if (selected.has(r.id)) selected.delete(r.id);
       else selected.add(r.id);
