@@ -19,6 +19,7 @@
     --moss: #7fa07a;
     --moss-dark: #33513a;
     --danger: #d1685a;
+    --lavender: #a78bc9;
   }
   *{ box-sizing: border-box; }
   body{
@@ -64,14 +65,20 @@
 
   .runners{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
   .runner{
-    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    background: var(--card); border: 1px solid var(--line); border-left-width: 4px; border-radius: 10px;
     padding: 12px 14px; cursor: pointer; user-select: none; transition: border-color 0.15s ease;
   }
+  .runner.men{ border-left-color: var(--blaze); }
+  .runner.women{ border-left-color: var(--lavender); }
   .runner:hover{ border-color: var(--moss); }
+  .runner:hover.men{ border-left-color: var(--blaze); }
+  .runner:hover.women{ border-left-color: var(--lavender); }
   .runner.picked{ border-color: var(--blaze); background: var(--moss-dark); }
+  .runner.picked.women{ border-left-color: var(--lavender); }
   .runner-top{ display:flex; justify-content: space-between; align-items: baseline; }
   .runner-name{ font-weight: 600; font-size: 14.5px; }
   .runner-value{ font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; color: var(--blaze); }
+  .runner.women .runner-value{ color: var(--lavender); }
   .runner-meta{ color: var(--ink-dim); font-size: 12px; margin-top: 3px; }
 
   input[type=text]{
@@ -340,10 +347,13 @@ function renderRunners(){
   const el = document.getElementById('runners');
   el.innerHTML = '';
   runnersWithValue.forEach(r => {
+    const isWoman = r.id.endsWith('w');
+    const genderClass = isWoman ? 'women' : 'men';
+    const genderSymbol = isWoman ? '♀' : '♂';
     const card = document.createElement('div');
-    card.className = 'runner' + (selected.has(r.id) ? ' picked' : '');
+    card.className = 'runner ' + genderClass + (selected.has(r.id) ? ' picked' : '');
     card.innerHTML =
-      '<div class="runner-top"><span class="runner-name">' + r.name + '</span>' +
+      '<div class="runner-top"><span class="runner-name">' + genderSymbol + ' ' + r.name + '</span>' +
       '<span class="runner-value">' + r.value + '</span></div>' +
       '<div class="runner-meta">cote ' + r.odd + '</div>';
     card.onclick = () => {
