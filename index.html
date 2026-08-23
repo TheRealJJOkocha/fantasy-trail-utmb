@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fantasy Trail</title>
+<title>Fantasy Trail ®</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap');
 
@@ -174,7 +174,11 @@
       <div class="budget-txt" id="budget-txt">0 / 1000</div>
     </div>
 
-    <div class="runners" id="runners"></div>
+    <h3 class="display" style="font-size:18px; margin: 1.2rem 0 0.6rem; color: var(--blaze);">♂ Hommes</h3>
+    <div class="runners" id="runners-men"></div>
+
+    <h3 class="display" style="font-size:18px; margin: 1.6rem 0 0.6rem; color: var(--lavender);">♀ Femmes</h3>
+    <div class="runners" id="runners-women"></div>
   </section>
 
   <section>
@@ -211,124 +215,124 @@ const RACE = {
   teamsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQc8dt-_gLdukXORalmsE8FMdqHKZD4ebUvm_PXseVT6WWzvssslmAG37nh3J_VE4OzmJP5dWGZXgrQ/pub?gid=1582131261&single=true&output=csv",
   resultsCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQc8dt-_gLdukXORalmsE8FMdqHKZD4ebUvm_PXseVT6WWzvssslmAG37nh3J_VE4OzmJP5dWGZXgrQ/pub?gid=594371071&single=true&output=csv",
   runners: [
-    { id: "dhiman", name: "Ben Dhiman", odd: 3 },
-    { id: "olson", name: "Caleb Olson", odd: 3.5 },
-    { id: "namberger", name: "Hannes Namberger", odd: 4 },
-    { id: "bouillard", name: "Vincent Bouillard", odd: 4.6 },
-    { id: "albon", name: "Jonathan Albon", odd: 5.1 },
-    { id: "myers", name: "Chris Myers", odd: 5.6 },
-    { id: "reiterer", name: "Andreas Reiterer", odd: 6.1 },
-    { id: "chassagne", name: "Baptiste Chassagne", odd: 6.7 },
-    { id: "wade", name: "Josh Wade", odd: 7.2 },
-    { id: "holmen", name: "Drew Holmen", odd: 7.7 },
-    { id: "farvard", name: "Rod Farvard", odd: 8.2 },
-    { id: "butaci", name: "Raul Octaviu Butaci", odd: 8.8 },
-    { id: "geiser", name: "Tobias Geiser", odd: 9.3 },
-    { id: "lopez", name: "Joaquin Lopez", odd: 9.8 },
-    { id: "cornutchauvinc", name: "Paul Cornut Chauvinc", odd: 10.3 },
-    { id: "charvolin", name: "Antoine Charvolin", odd: 10.9 },
-    { id: "miller", name: "Zach Miller", odd: 11.4 },
-    { id: "woodward", name: "Canyon Woodward", odd: 11.9 },
-    { id: "noel", name: "Yannick Noel", odd: 12.4 },
-    { id: "tschumi", name: "Jean-Philippe Tschumi", odd: 13 },
-    { id: "manole", name: "Ionel Cristian Manole", odd: 13.5 },
-    { id: "detienne", name: "Theo Detienne", odd: 14 },
-    { id: "shen", name: "Jiasheng Shen", odd: 14.5 },
-    { id: "bonin", name: "Arnaud Bonin", odd: 15.1 },
-    { id: "deng", name: "Guomin Deng", odd: 15.6 },
-    { id: "manetsch", name: "Ramon Manetsch", odd: 16.1 },
-    { id: "gorczyca", name: "Bartosz Gorczyca", odd: 16.6 },
-    { id: "marchon", name: "Valentin Marchon", odd: 17.2 },
-    { id: "bonnecarrere", name: "Gautier Bonnecarrere", odd: 17.7 },
-    { id: "causidis", name: "Marek Causidis", odd: 18.2 },
-    { id: "coatantiec", name: "Baptiste Coatantiec", odd: 18.7 },
-    { id: "ramosgonzalez", name: "Marcos Ramos-Gonzalez", odd: 19.3 },
-    { id: "heras", name: "Miguel Heras", odd: 19.8 },
-    { id: "carretero", name: "Abel Carretero", odd: 20.3 },
-    { id: "capell", name: "Pau Capell", odd: 20.5 },
-    { id: "anguita", name: "Manuel Anguita", odd: 20.8 },
-    { id: "rieder", name: "Andreas Rieder", odd: 21.4 },
-    { id: "moriset", name: "Virgile Moriset", odd: 21.9 },
-    { id: "joyeuxbouillon", name: "Arthur Joyeux-Bouillon", odd: 22.4 },
-    { id: "play", name: "Corentin Play", odd: 22.9 },
-    { id: "marquet", name: "Thibault Marquet", odd: 23.5 },
-    { id: "airault", name: "Ferdinand Airault", odd: 24 },
-    { id: "rueda", name: "Santos Gabriel Rueda", odd: 24.5 },
-    { id: "gourdon", name: "Nicolas Gourdon", odd: 25 },
-    { id: "lind", name: "Cody Lind", odd: 25.6 },
-    { id: "lesniak", name: "Kamil Lesniak", odd: 26.1 },
-    { id: "fernandez", name: "Borja Fernandez", odd: 26.6 },
-    { id: "ferrari", name: "Aubin Ferrari", odd: 27.1 },
-    { id: "schicktanz", name: "Gian Marchet Schicktanz", odd: 27.7 },
-    { id: "symonds", name: "Andy Symonds", odd: 28.2 },
-    { id: "villa", name: "Pablo Villa", odd: 28.7 },
-    { id: "halasz", name: "Martin Halasz", odd: 29.2 },
-    { id: "cherta", name: "Ricardo Cherta", odd: 29.8 },
-    { id: "montani", name: "Riccardo Montani", odd: 30.3 },
-    { id: "leboudec", name: "Theo Le Boudec", odd: 30.8 },
-    { id: "lockwood", name: "Richard Lockwood", odd: 31.3 },
-    { id: "fenre", name: "Tobias Dahl Fenre", odd: 31.9 },
-    { id: "bures", name: "Mael Bures", odd: 32.4 },
-    { id: "benard", name: "Valentin Benard", odd: 32.9 },
-    { id: "sullivan", name: "Tommy Sullivan", odd: 33.4 },
-    { id: "petitjean", name: "Baptiste Petitjean", odd: 34 },
-    { id: "gosselin", name: "Simon Gosselin", odd: 34.5 },
-    { id: "tolstenko", name: "Aleksei Tolstenko", odd: 35 },
-    { id: "courtneydauwalterw", name: "Courtney Dauwalter", odd: 3 },
-    { id: "rileybradyw", name: "Riley Brady", odd: 3.6 },
-    { id: "fuzhaoxiangw", name: "Fuzhao Xiang", odd: 4.2 },
-    { id: "ruthcroftw", name: "Ruth Croft", odd: 4.8 },
-    { id: "sunmayabudhaw", name: "Sunmaya Budha", odd: 5.4 },
-    { id: "abbyhallw", name: "Abby Hall", odd: 6 },
-    { id: "blandinelhirondelw", name: "Blandine L'Hirondel", odd: 6.6 },
-    { id: "lucybartholomeww", name: "Lucy Bartholomew", odd: 7.1 },
-    { id: "esztercsillagw", name: "Eszter Csillag", odd: 7.7 },
-    { id: "antoninaiushinaw", name: "Antonina Iushina", odd: 8.3 },
-    { id: "sheaaquilanow", name: "Shea Aquilano", odd: 8.9 },
-    { id: "racheldrakew", name: "Rachel Drake", odd: 9.5 },
-    { id: "linchenw", name: "Lin Chen", odd: 10.1 },
-    { id: "martinavalmassoiw", name: "Martina Valmassoi", odd: 10.7 },
-    { id: "rachelentrekinw", name: "Rachel Entrekin", odd: 11.3 },
-    { id: "henriettealbonw", name: "Henriette Albon", odd: 11.9 },
-    { id: "eleanordavisw", name: "Eleanor Davis", odd: 12.5 },
-    { id: "jazminelowtherw", name: "Jazmine Lowther", odd: 13.1 },
-    { id: "ekaterinamityaevaw", name: "Ekaterina Mityaeva", odd: 13.7 },
-    { id: "caretharnoldw", name: "Careth Arnold", odd: 14.3 },
-    { id: "katarzynadombrowskaw", name: "Katarzyna Dombrowska", odd: 14.9 },
-    { id: "annaloudenw", name: "Anna Louden", odd: 15.4 },
-    { id: "katieasmuthw", name: "Katie Asmuth", odd: 16 },
-    { id: "mariklakeggfenrew", name: "Mari Klakegg Fenre", odd: 16.6 },
-    { id: "annaliw", name: "Anna Li", odd: 17.2 },
-    { id: "emiliemannw", name: "Emilie Mann", odd: 17.8 },
-    { id: "aroasiow", name: "Aroa Sio", odd: 18.4 },
-    { id: "claudiatrempsw", name: "Claudia Tremps", odd: 19 },
-    { id: "annacarlssonw", name: "Anna Carlsson", odd: 19.6 },
-    { id: "leahyinglingw", name: "Leah Yingling", odd: 20.2 },
-    { id: "madisonliechtyw", name: "Madison Liechty", odd: 20.8 },
-    { id: "annececilethevenotw", name: "Anne-Cecile Thevenot", odd: 21.4 },
-    { id: "corinneshalvoyw", name: "Corinne Shalvoy", odd: 22 },
-    { id: "emilyschmitzw", name: "Emily Schmitz", odd: 22.6 },
-    { id: "genevieveasselindemersw", name: "Genevieve Asselin-Demers", odd: 23.1 },
-    { id: "lipingwangw", name: "Liping Wang", odd: 23.7 },
-    { id: "hannaahow", name: "Hanna Aho", odd: 24.3 },
-    { id: "melaniedelasoiew", name: "Melanie Delasoie", odd: 24.9 },
-    { id: "anastasiadavydovaw", name: "Anastasia Davydova", odd: 25.5 },
-    { id: "jenniferlemoinew", name: "Jennifer Lemoine", odd: 26.1 },
-    { id: "stephanieaustonw", name: "Stephanie Auston", odd: 26.7 },
-    { id: "andreavlasakovaw", name: "Andrea Vlasakova", odd: 27.3 },
-    { id: "enricadematteisw", name: "Enrica Dematteis", odd: 27.9 },
-    { id: "eevibengsw", name: "Eevi Bengs", odd: 28.5 },
-    { id: "manongrasw", name: "Manon Gras", odd: 29.1 },
-    { id: "nicolettekaylingriffioenw", name: "Nicolette Kaylin Griffioen", odd: 29.7 },
-    { id: "victoriastansfieldw", name: "Victoria Stansfield", odd: 30.3 },
-    { id: "amandabashamw", name: "Amanda Basham", odd: 30.9 },
-    { id: "nicolguidolinw", name: "Nicol Guidolin", odd: 31.4 },
-    { id: "annesofiepollestadw", name: "Anne-Sofie Pollestad", odd: 32 },
-    { id: "oanamarinaw", name: "Oana Marina", odd: 32.6 },
-    { id: "juliadavisw", name: "Julia Davis", odd: 33.2 },
-    { id: "michaelawolfw", name: "Michaela Wolf", odd: 33.8 },
-    { id: "michaelalishakovaw", name: "Michaela Lishakova", odd: 34.4 },
-    { id: "anneliselequerew", name: "Anne-Lise Le Quere", odd: 35 }
+    { id: "dhiman", name: "Ben Dhiman", index: 946 },
+    { id: "olson", name: "Caleb Olson", index: 945 },
+    { id: "namberger", name: "Hannes Namberger", index: 941 },
+    { id: "bouillard", name: "Vincent Bouillard", index: 941 },
+    { id: "albon", name: "Jonathan Albon", index: 938 },
+    { id: "myers", name: "Chris Myers", index: 937 },
+    { id: "reiterer", name: "Andreas Reiterer", index: 930 },
+    { id: "chassagne", name: "Baptiste Chassagne", index: 926 },
+    { id: "wade", name: "Josh Wade", index: 920 },
+    { id: "holmen", name: "Drew Holmen", index: 920 },
+    { id: "farvard", name: "Rod Farvard", index: 915 },
+    { id: "butaci", name: "Raul Octaviu Butaci", index: 915 },
+    { id: "geiser", name: "Tobias Geiser", index: 913 },
+    { id: "lopez", name: "Joaquin Lopez", index: 912 },
+    { id: "cornutchauvinc", name: "Paul Cornut Chauvinc", index: 912 },
+    { id: "charvolin", name: "Antoine Charvolin", index: 911 },
+    { id: "miller", name: "Zach Miller", index: 908 },
+    { id: "woodward", name: "Canyon Woodward", index: 907 },
+    { id: "noel", name: "Yannick Noel", index: 905 },
+    { id: "tschumi", name: "Jean-Philippe Tschumi", index: 905 },
+    { id: "manole", name: "Ionel Cristian Manole", index: 904 },
+    { id: "detienne", name: "Theo Detienne", index: 903 },
+    { id: "shen", name: "Jiasheng Shen", index: 903 },
+    { id: "bonin", name: "Arnaud Bonin", index: 903 },
+    { id: "deng", name: "Guomin Deng", index: 896 },
+    { id: "manetsch", name: "Ramon Manetsch", index: 893 },
+    { id: "gorczyca", name: "Bartosz Gorczyca", index: 891 },
+    { id: "marchon", name: "Valentin Marchon", index: 890 },
+    { id: "bonnecarrere", name: "Gautier Bonnecarrere", index: 888 },
+    { id: "causidis", name: "Marek Causidis", index: 887 },
+    { id: "coatantiec", name: "Baptiste Coatantiec", index: 887 },
+    { id: "ramosgonzalez", name: "Marcos Ramos-Gonzalez", index: 885 },
+    { id: "heras", name: "Miguel Heras", index: 885 },
+    { id: "carretero", name: "Abel Carretero", index: 884 },
+    { id: "capell", name: "Pau Capell", index: 870 },
+    { id: "anguita", name: "Manuel Anguita", index: 884 },
+    { id: "rieder", name: "Andreas Rieder", index: 881 },
+    { id: "moriset", name: "Virgile Moriset", index: 879 },
+    { id: "joyeuxbouillon", name: "Arthur Joyeux-Bouillon", index: 876 },
+    { id: "play", name: "Corentin Play", index: 876 },
+    { id: "marquet", name: "Thibault Marquet", index: 874 },
+    { id: "airault", name: "Ferdinand Airault", index: 873 },
+    { id: "rueda", name: "Santos Gabriel Rueda", index: 870 },
+    { id: "gourdon", name: "Nicolas Gourdon", index: 870 },
+    { id: "lind", name: "Cody Lind", index: 869 },
+    { id: "lesniak", name: "Kamil Lesniak", index: 868 },
+    { id: "fernandez", name: "Borja Fernandez", index: 867 },
+    { id: "ferrari", name: "Aubin Ferrari", index: 867 },
+    { id: "schicktanz", name: "Gian Marchet Schicktanz", index: 866 },
+    { id: "symonds", name: "Andy Symonds", index: 865 },
+    { id: "villa", name: "Pablo Villa", index: 864 },
+    { id: "halasz", name: "Martin Halasz", index: 863 },
+    { id: "cherta", name: "Ricardo Cherta", index: 863 },
+    { id: "montani", name: "Riccardo Montani", index: 861 },
+    { id: "leboudec", name: "Theo Le Boudec", index: 860 },
+    { id: "lockwood", name: "Richard Lockwood", index: 860 },
+    { id: "fenre", name: "Tobias Dahl Fenre", index: 859 },
+    { id: "bures", name: "Mael Bures", index: 859 },
+    { id: "benard", name: "Valentin Benard", index: 858 },
+    { id: "sullivan", name: "Tommy Sullivan", index: 857 },
+    { id: "petitjean", name: "Baptiste Petitjean", index: 856 },
+    { id: "gosselin", name: "Simon Gosselin", index: 855 },
+    { id: "tolstenko", name: "Aleksei Tolstenko", index: 852 },
+    { id: "courtneydauwalterw", name: "Courtney Dauwalter", index: 859 },
+    { id: "rileybradyw", name: "Riley Brady", index: 826 },
+    { id: "fuzhaoxiangw", name: "Fuzhao Xiang", index: 823 },
+    { id: "ruthcroftw", name: "Ruth Croft", index: 822 },
+    { id: "sunmayabudhaw", name: "Sunmaya Budha", index: 814 },
+    { id: "abbyhallw", name: "Abby Hall", index: 808 },
+    { id: "blandinelhirondelw", name: "Blandine L'Hirondel", index: 807 },
+    { id: "lucybartholomeww", name: "Lucy Bartholomew", index: 799 },
+    { id: "esztercsillagw", name: "Eszter Csillag", index: 798 },
+    { id: "antoninaiushinaw", name: "Antonina Iushina", index: 791 },
+    { id: "sheaaquilanow", name: "Shea Aquilano", index: 789 },
+    { id: "racheldrakew", name: "Rachel Drake", index: 786 },
+    { id: "linchenw", name: "Lin Chen", index: 782 },
+    { id: "martinavalmassoiw", name: "Martina Valmassoi", index: 781 },
+    { id: "rachelentrekinw", name: "Rachel Entrekin", index: 781 },
+    { id: "henriettealbonw", name: "Henriette Albon", index: 774 },
+    { id: "eleanordavisw", name: "Eleanor Davis", index: 774 },
+    { id: "jazminelowtherw", name: "Jazmine Lowther", index: 772 },
+    { id: "ekaterinamityaevaw", name: "Ekaterina Mityaeva", index: 769 },
+    { id: "caretharnoldw", name: "Careth Arnold", index: 766 },
+    { id: "katarzynadombrowskaw", name: "Katarzyna Dombrowska", index: 765 },
+    { id: "annaloudenw", name: "Anna Louden", index: 763 },
+    { id: "katieasmuthw", name: "Katie Asmuth", index: 761 },
+    { id: "mariklakeggfenrew", name: "Mari Klakegg Fenre", index: 760 },
+    { id: "annaliw", name: "Anna Li", index: 758 },
+    { id: "emiliemannw", name: "Emilie Mann", index: 756 },
+    { id: "aroasiow", name: "Aroa Sio", index: 754 },
+    { id: "claudiatrempsw", name: "Claudia Tremps", index: 753 },
+    { id: "annacarlssonw", name: "Anna Carlsson", index: 751 },
+    { id: "leahyinglingw", name: "Leah Yingling", index: 749 },
+    { id: "madisonliechtyw", name: "Madison Liechty", index: 742 },
+    { id: "annececilethevenotw", name: "Anne-Cecile Thevenot", index: 741 },
+    { id: "corinneshalvoyw", name: "Corinne Shalvoy", index: 739 },
+    { id: "emilyschmitzw", name: "Emily Schmitz", index: 739 },
+    { id: "genevieveasselindemersw", name: "Genevieve Asselin-Demers", index: 733 },
+    { id: "lipingwangw", name: "Liping Wang", index: 730 },
+    { id: "hannaahow", name: "Hanna Aho", index: 729 },
+    { id: "melaniedelasoiew", name: "Melanie Delasoie", index: 729 },
+    { id: "anastasiadavydovaw", name: "Anastasia Davydova", index: 728 },
+    { id: "jenniferlemoinew", name: "Jennifer Lemoine", index: 728 },
+    { id: "stephanieaustonw", name: "Stephanie Auston", index: 724 },
+    { id: "andreavlasakovaw", name: "Andrea Vlasakova", index: 723 },
+    { id: "enricadematteisw", name: "Enrica Dematteis", index: 723 },
+    { id: "eevibengsw", name: "Eevi Bengs", index: 719 },
+    { id: "manongrasw", name: "Manon Gras", index: 717 },
+    { id: "nicolettekaylingriffioenw", name: "Nicolette Kaylin Griffioen", index: 715 },
+    { id: "victoriastansfieldw", name: "Victoria Stansfield", index: 715 },
+    { id: "amandabashamw", name: "Amanda Basham", index: 715 },
+    { id: "nicolguidolinw", name: "Nicol Guidolin", index: 712 },
+    { id: "annesofiepollestadw", name: "Anne-Sofie Pollestad", index: 710 },
+    { id: "oanamarinaw", name: "Oana Marina", index: 708 },
+    { id: "juliadavisw", name: "Julia Davis", index: 708 },
+    { id: "michaelawolfw", name: "Michaela Wolf", index: 707 },
+    { id: "michaelalishakovaw", name: "Michaela Lishakova", index: 702 },
+    { id: "anneliselequerew", name: "Anne-Lise Le Quere", index: 700 }
   ],
   points: [2000, 1200, 800, 600, 400, 300, 200, 150, 150, 150]
 };
@@ -339,19 +343,37 @@ document.getElementById('race-subtitle').textContent = RACE.subtitle;
 document.getElementById('stat-budget').textContent = RACE.budget;
 
 function computeValues(runners, totalBudget){
-  const invSum = runners.reduce((s, r) => s + 1 / r.odd, 0);
-  return runners.map(r => ({
-    ...r,
-    value: Math.round(totalBudget * (1 / r.odd) / invSum)
-  })).sort((a, b) => b.value - a.value);
+  // Valeur proportionnelle à l'index UTMB réel, calculée SÉPARÉMENT par
+  // catégorie (hommes/femmes) car l'échelle d'index n'est pas comparable
+  // entre les deux — chaque catégorie se partage équitablement la moitié
+  // du budget total, cohérent avec le classement/scoring qui est lui
+  // aussi tenu séparément par catégorie.
+  const POWER = 8;
+  const men = runners.filter(r => !r.id.endsWith('w'));
+  const women = runners.filter(r => r.id.endsWith('w'));
+  const poolPerCategory = totalBudget / 2;
+
+  function valuesFor(list){
+    const weights = list.map(r => Math.pow(r.index, POWER));
+    const sumW = weights.reduce((s, w) => s + w, 0);
+    return list.map((r, i) => ({
+      ...r,
+      value: Math.round(poolPerCategory * weights[i] / sumW)
+    }));
+  }
+
+  return [...valuesFor(men), ...valuesFor(women)].sort((a, b) => b.value - a.value);
 }
 
 const runnersWithValue = computeValues(RACE.runners, RACE.budget * RACE.valuePoolMultiplier);
 const selected = new Set();
 
 function renderRunners(){
-  const el = document.getElementById('runners');
-  el.innerHTML = '';
+  const menEl = document.getElementById('runners-men');
+  const womenEl = document.getElementById('runners-women');
+  menEl.innerHTML = '';
+  womenEl.innerHTML = '';
+
   runnersWithValue.forEach(r => {
     const isWoman = r.id.endsWith('w');
     const genderClass = isWoman ? 'women' : 'men';
@@ -369,7 +391,7 @@ function renderRunners(){
       updateBudget();
       updateFormLink();
     };
-    el.appendChild(card);
+    (isWoman ? womenEl : menEl).appendChild(card);
   });
 }
 
