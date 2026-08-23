@@ -34,12 +34,13 @@
 
   .hero{
     position: relative;
-    padding: 2.6rem 1.5rem 1.6rem;
+    padding: 2.6rem 1.5rem 5.5rem;
     overflow: hidden;
     border-bottom: 1px solid var(--line);
   }
-  .hero svg{ position:absolute; left:0; bottom:0; width:100%; height:64px; }
+  .hero-elevation{ position: absolute; left:0; right:0; bottom:0; width:100%; height: 110px; }
   .hero-inner{ position: relative; z-index: 2; }
+  .hero-text{ max-width: 520px; }
   .eyebrow{ color: var(--blaze); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; }
   .h1{ font-size: 40px; font-weight: 700; margin: 0.2rem 0 0.4rem; line-height: 1.0; }
   .h1 span{ color: var(--blaze); }
@@ -123,17 +124,22 @@
 
   <div class="hero">
     <div class="hero-inner">
-      <div class="eyebrow" id="race-eyebrow">Fantasy Trail</div>
-      <h1 class="h1 display" id="race-title">UTMB <span>2026</span></h1>
-      <p class="subtitle" id="race-subtitle">174 km, 9 900 m D+ — départ vendredi 28 août à 17h45, Chamonix.</p>
-      <div class="stats">
-        <div><div class="stat-num" id="stat-budget">1000</div><div class="stat-label">Budget</div></div>
-        <div><div class="stat-num" id="stat-teams">—</div><div class="stat-label">Équipes inscrites</div></div>
+      <div class="hero-text">
+        <div class="eyebrow" id="race-eyebrow">FANTASY TRAIL</div>
+        <h1 class="h1 display" id="race-title">UTMB <span>2026</span></h1>
+        <p class="subtitle" id="race-subtitle">174 km, 9 900 m D+ — départ vendredi 28 août à 17h45, Chamonix.</p>
+        <div class="stats">
+          <div><div class="stat-num" id="stat-budget">1000</div><div class="stat-label">Budget</div></div>
+          <div><div class="stat-num" id="stat-teams">—</div><div class="stat-label">Équipes inscrites</div></div>
+        </div>
       </div>
     </div>
-    <svg viewBox="0 0 400 64" preserveAspectRatio="none">
-      <polyline points="0,55 30,40 55,48 85,18 110,30 140,10 165,25 195,15 225,35 255,20 285,42 315,30 345,45 400,38"
-        fill="none" stroke="#7fa07a" stroke-width="2" opacity="0.55" />
+    <svg class="hero-elevation" viewBox="0 0 800 110" preserveAspectRatio="none">
+      <path d="M0,110 L0,89.71 C6.89,89.94 29.97,96.72 41.32,91.12 C52.67,85.52 57.66,54.28 68.1,56.09 C78.54,57.90 90.80,97.41 103.97,102 C117.14,106.59 130.39,98.75 147.11,83.61 C163.83,68.47 189.33,14.78 204.31,11.16 C219.29,7.54 224.13,62.25 237,61.91 C249.87,61.57 268.18,12.94 281.5,9.14 C294.82,5.34 304.58,34.09 316.91,39.12 C329.25,44.15 345.37,32.34 355.51,39.33 C365.65,46.32 369.96,81.22 377.75,81.06 C385.54,80.90 388.50,43.66 402.27,38.35 C416.04,33.05 447.22,54.29 460.39,49.23 C473.56,44.17 470.30,6.41 481.27,8 C492.24,9.59 507.98,49.09 526.22,58.75 C544.46,68.41 573.97,69.40 590.69,65.93 C607.41,62.46 614.07,36.39 626.56,37.92 C639.05,39.45 650.55,68.54 665.61,75.13 C680.67,81.72 699.81,82.73 716.91,77.47 C734.01,72.21 754.37,41.54 768.22,43.58 C782.07,45.62 794.70,82.02 800,89.71 L800,110 Z"
+        fill="#7fa07a" opacity="0.14" />
+      <path d="M0,89.71 C6.89,89.94 29.97,96.72 41.32,91.12 C52.67,85.52 57.66,54.28 68.1,56.09 C78.54,57.90 90.80,97.41 103.97,102 C117.14,106.59 130.39,98.75 147.11,83.61 C163.83,68.47 189.33,14.78 204.31,11.16 C219.29,7.54 224.13,62.25 237,61.91 C249.87,61.57 268.18,12.94 281.5,9.14 C294.82,5.34 304.58,34.09 316.91,39.12 C329.25,44.15 345.37,32.34 355.51,39.33 C365.65,46.32 369.96,81.22 377.75,81.06 C385.54,80.90 388.50,43.66 402.27,38.35 C416.04,33.05 447.22,54.29 460.39,49.23 C473.56,44.17 470.30,6.41 481.27,8 C492.24,9.59 507.98,49.09 526.22,58.75 C544.46,68.41 573.97,69.40 590.69,65.93 C607.41,62.46 614.07,36.39 626.56,37.92 C639.05,39.45 650.55,68.54 665.61,75.13 C680.67,81.72 699.81,82.73 716.91,77.47 C734.01,72.21 754.37,41.54 768.22,43.58 C782.07,45.62 794.70,82.02 800,89.71"
+        fill="none" stroke="#7fa07a" stroke-width="2.5" stroke-linecap="round" opacity="0.75" />
+      <circle cx="481.27" cy="8" r="3.5" fill="#e3b23c" />
     </svg>
   </div>
 
@@ -327,7 +333,7 @@ const RACE = {
   points: [2000, 1200, 800, 600, 400, 300, 200, 150, 150, 150]
 };
 
-document.getElementById('race-eyebrow').textContent = 'Fantasy trail';
+document.getElementById('race-eyebrow').textContent = 'FANTASY TRAIL';
 document.getElementById('race-title').innerHTML = RACE.name + ' <span>' + RACE.year + '</span>';
 document.getElementById('race-subtitle').textContent = RACE.subtitle;
 document.getElementById('stat-budget').textContent = RACE.budget;
