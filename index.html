@@ -194,8 +194,8 @@
 
   <section>
     <h2 class="section-title">2. Valider ton équipe</h2>
-    <p class="section-help">Entre ton pseudo, puis ouvre le formulaire — tes coureurs sélectionnés ci-dessus seront déjà cochés dedans, il ne te reste qu'à confirmer l'envoi.</p>
-    <input type="text" id="participant-name" placeholder="Ton prénom">
+    <p class="section-help">Entre ton prénom, puis ouvre le formulaire — tes coureurs sélectionnés ci-dessus seront déjà cochés dedans, il ne te reste qu'à confirmer l'envoi.</p>
+    <input type="text" id="participant-name" placeholder="Ton pseudo">
     <a id="form-link" href="#" target="_blank" style="display:inline-block;"><button class="primary">Ouvrir le formulaire (pré-rempli) ↗</button></a>
     <div class="msg" id="form-msg"></div>
   </section>
@@ -442,7 +442,7 @@ updateBudget();
 document.getElementById('form-link').href = RACE.formUrl || '#';
 
 function optionTextFor(runner){
-  return runner.name + ' (' + runner.value + ')';
+  return runner.name;
 }
 
 function buildPrefilledFormUrl(){
